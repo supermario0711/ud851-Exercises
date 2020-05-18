@@ -119,8 +119,9 @@ public class MainActivity extends AppCompatActivity {
         // Change button text
         mButton.setText(getString(R.string.next_word));
 
-        // TODO (4) Show the definition
+        // COMPLETED (4) Show the definition
         mCurrentState = STATE_SHOWN;
+        mTextViewDefinition.setVisibility(View.VISIBLE);
 
     }
 
