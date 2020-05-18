@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     // The current state of the app
     private int mCurrentState;
 
-    // TODO (3) Create an instance variable storing a Cursor called mData
+    // COMPLETED (3) Create an instance variable storing a Cursor called mData
     private Cursor mData;
 
     private Button mButton;
@@ -57,7 +57,9 @@ public class MainActivity extends AppCompatActivity {
         // Get the views
         mButton = (Button) findViewById(R.id.button_next);
 
-        // TODO (5) Create and execute your AsyncTask here
+        // COMPLETED (5) Create and execute your AsyncTask here
+        new WordFetchTask().execute();
+
     }
 
     /**
