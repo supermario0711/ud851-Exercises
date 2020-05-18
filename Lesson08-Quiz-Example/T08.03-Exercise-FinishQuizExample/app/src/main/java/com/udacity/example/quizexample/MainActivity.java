@@ -93,10 +93,24 @@ public class MainActivity extends AppCompatActivity {
         // Change button text
         mButton.setText(getString(R.string.show_definition));
 
-        // TODO (3) Go to the next word in the Cursor, show the next word and hide the definition
+        // COMPLETED (3) Go to the next word in the Cursor, show the next word and hide the definition
         // Note that you shouldn't try to do this if the cursor hasn't been set yet.
         // If you reach the end of the list of words, you should start at the beginning again.
         mCurrentState = STATE_HIDDEN;
+
+        if(mData != null) {
+            int wordCol = mData.getColumnIndex(DroidTermsExampleContract.COLUMN_WORD);
+            int definitionCol = mData.getColumnIndex(DroidTermsExampleContract.COLUMN_DEFINITION);
+            if(mData.moveToNext()) {
+                String word = mData.getString(wordCol);
+                String definition = mData.getString(definitionCol);
+                mTextViewWord.setText(word);
+                mTextViewDefinition.setVisibility(View.INVISIBLE);
+                mTextViewDefinition.setText(definition);
+            } else {
+                mData.moveToFirst();
+            }
+        }
 
     }
 
@@ -142,15 +156,20 @@ public class MainActivity extends AppCompatActivity {
             // Set the data for MainActivity
             mData = cursor;
 
+
             // COMPLETED (2) Initialize anything that you need the cursor for, such as setting up
             // the screen with the first word and setting any other instance variables
             int wordCol = cursor.getColumnIndex(DroidTermsExampleContract.COLUMN_WORD);
             int definitionCol = cursor.getColumnIndex(DroidTermsExampleContract.COLUMN_DEFINITION);
-            String word = cursor.getString(wordCol);
-            String definition = cursor.getString(definitionCol);
 
-            mTextViewWord.setText(word);
-            mTextViewDefinition.setText(definition);
+            if(cursor.moveToNext()) {
+                String word = cursor.getString(wordCol);
+                String definition = cursor.getString(definitionCol);
+                mTextViewWord.setText(word);
+                mTextViewDefinition.setVisibility(View.INVISIBLE);
+                mTextViewDefinition.setText(definition);
+            }
+
         }
     }
 
