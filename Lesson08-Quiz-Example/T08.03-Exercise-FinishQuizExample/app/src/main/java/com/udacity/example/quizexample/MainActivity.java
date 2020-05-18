@@ -142,8 +142,15 @@ public class MainActivity extends AppCompatActivity {
             // Set the data for MainActivity
             mData = cursor;
 
-            // TODO (2) Initialize anything that you need the cursor for, such as setting up
+            // COMPLETED (2) Initialize anything that you need the cursor for, such as setting up
             // the screen with the first word and setting any other instance variables
+            int wordCol = cursor.getColumnIndex(DroidTermsExampleContract.COLUMN_WORD);
+            int definitionCol = cursor.getColumnIndex(DroidTermsExampleContract.COLUMN_DEFINITION);
+            String word = cursor.getString(wordCol);
+            String definition = cursor.getString(definitionCol);
+
+            mTextViewWord.setText(word);
+            mTextViewDefinition.setText(definition);
         }
     }
 
