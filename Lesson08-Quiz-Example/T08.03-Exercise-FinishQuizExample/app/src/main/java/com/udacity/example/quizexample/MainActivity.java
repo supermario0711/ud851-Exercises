@@ -128,7 +128,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // TODO (5) Remember to close your cursor!
+        // COMPLETED (5) Remember to close your cursor!
+        mData.close();
     }
 
     // Use an async task to do the data fetch off of the main thread.
