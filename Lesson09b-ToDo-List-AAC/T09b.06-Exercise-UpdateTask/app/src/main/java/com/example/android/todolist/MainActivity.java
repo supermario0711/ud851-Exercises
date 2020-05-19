@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
         retrieveTasks();
     }
 
-    private void retrieveTasks() {
+    public void retrieveTasks() {
         AppExecutors.getInstance().diskIO().execute(new Runnable() {
             @Override
             public void run() {
@@ -141,6 +141,10 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.ItemC
     @Override
     public void onItemClickListener(int itemId) {
         // Launch AddTaskActivity adding the itemId as an extra in the intent
-        // TODO (2) Launch AddTaskActivity with itemId as extra for the key AddTaskActivity.EXTRA_TASK_ID
+        // COMPLETED (2) Launch AddTaskActivity with itemId as extra for the key AddTaskActivity.EXTRA_TASK_ID
+
+        Intent intentToUpdateTask = new Intent(this, AddTaskActivity.class);
+        intentToUpdateTask.putExtra(AddTaskActivity.EXTRA_TASK_ID, itemId);
+        startActivity(intentToUpdateTask);
     }
 }
